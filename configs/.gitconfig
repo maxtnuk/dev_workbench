@@ -1,0 +1,14 @@
+[credential]
+	helper = store
+[alias]
+	pto = push origin HEAD
+	ptof = push origin --force HEAD
+	st = status -sb
+	last =log -1 HEAD --stat
+	cm = commit -m
+	dv = difftool -t vimdiff -y
+	gl = config --global -l
+	undo = reset --soft HEAD~1
+	head = reset --hard HEAD
+	# not_stable = commit -m '_not stable'
+	# sweep = !sh -c "git branch --merged master | grep -v '^\*' | xargs -n 1 git branch -d"

@@ -1,0 +1,5 @@
+#!/bin/bash
+# temporarily restore .gitignore to run script and then restore it back
+git restore .gitignore
+$@
+cat .gitignore_copy > .gitignore

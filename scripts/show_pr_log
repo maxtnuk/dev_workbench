@@ -1,0 +1,46 @@
+#!/bin/bash
+upstream_url=$(git remote get-url upstream 2>/dev/null)
+
+if [ -z "$upstream_url" ]; then
+    echo "No upstream remote is set."
+else
+    repo_path=$(echo "$upstream_url" | sed -e 's/.*@github.com://' -e 's/.*:\/\/github.com\///' -e 's/\.git$//')
+    echo "The upstream repository is: $repo_path"
+fi
+
+REPO_NAME=$repo_path
+REMOTE_REPO="https://github.com/$REPO_NAME"
+
+shift_count=${1:-0}
+commit_hash=$(git rev-parse HEAD~$shift_count)
+
+pr_number=$(gh pr list --repo "$REMOTE_REPO" --search "$commit_hash" --json number,mergeCommit --jq '.[] | .number')
+
+if [ -z "$pr_number" ]; then
+    echo "not found PR number"
+    exit 1
+fi
+
+echo "current PR which is containing current commit: #$pr_number"
+echo "checked commit : $commit_hash"
+
+failed_tests=()
+
+jobs=$(gh api "repos/$REPO_NAME/commits/$commit_hash/status?per_page=100" --jq '.statuses[] | {state: .state, target_url: .target_url, context: .context}')
+
+while IFS= read -r job; do
+    state=$(echo "$job" | grep "\"state\":\"failure\"")
+    if [ -n "$state" ]; then
+        failed_tests+=("$job")
+    fi
+done <<<"$jobs"
+
+if [ ${#failed_tests[@]} -eq 0 ]; then
+    echo "All test is success"
+else
+    echo "failed test log url:"
+    for failed_test in "${failed_tests[@]}"; do
+        target_url=$(echo "$failed_test" | jq -r '.target_url')
+        echo "$target_url"
+    done
+fi
