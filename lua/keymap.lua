@@ -26,7 +26,7 @@ nmap {
     -- yank
     { "Y",          "y$",                                                         opts(noremap) },
     -- toggle tree
-    { "<F2>",       cmd "NvimTreeToggle",                                         opts(noremap) },
+    { "<F2>",       cmd "Neotree",                                                opts(noremap) },
     -- spectre
     { "<Leader>S",  cmd "Spectre open",                                           opts(noremap) },
     { "<Leader>sw", cmd "Spectre open_visual {select_word=true}",                 opts(noremap) },
