@@ -61,9 +61,6 @@ nmap {
 -- Telescope
 nmap {
     { "<Leader>ff",       cmd "Telescope find_files",        opts(noremap) },
-    { "<Leader>fg",       cmd "Telescope live_grep",         opts(noremap) },
-    { "<Leader>fb",       cmd "Telescope buffers",           opts(noremap) },
-    { "<Leader>fh",       cmd "Telescope help_tags",         opts(noremap) },
     { "<Leader><Leader>", cmd "Telescope recent_files pick", opts(noremap, silent) },
 }
 
@@ -92,10 +89,6 @@ nmap {
     { "<A-.>",     cmd "BufferNext",                opts(noremap, silent) },
     { "<A-<>",     cmd "BufferMovePrevious",        opts(noremap, silent) },
     { "<A->>",     cmd "BufferMoveNext",            opts(noremap, silent) },
-    { "<Space>bb", cmd "BufferOrderByBufferNumber", opts(noremap, silent) },
-    { "<Space>bd", cmd "BufferOrderByDirectory",    opts(noremap, silent) },
-    { "<Space>bl", cmd "BufferOrderByLanguage",     opts(noremap, silent) },
-    { "<Space>bw", cmd "BufferOrderByWindowNumber", opts(noremap, silent) },
     { "<A-c>",     cmd "BufferClose",               opts(noremap, silent) },
     { "<A-p>",     cmd "BufferPin",                 opts(noremap, silent) },
 }
