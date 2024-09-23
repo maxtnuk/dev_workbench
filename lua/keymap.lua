@@ -14,6 +14,7 @@ nmap { ",", "", opts(noremap) }
 xmap { ",", "", opts(noremap) }
 
 tmap { "<Esc>", "<C-\\><C-n>", opts(noremap) }
+nmap { "<Space>", "<Esc>:", opts(noremap) }
 
 nmap {
     -- noremal remap
