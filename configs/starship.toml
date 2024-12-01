@@ -11,6 +11,7 @@ $git_metrics\
 [](fg:#394260 bg:#212736)\
 $nodejs\
 $rust\
+$conda\
 $python\
 $golang\
 $php\
@@ -19,6 +20,7 @@ $time\
 [ ](fg:#1d2230)\
 \n$character"""
 
+# fisrt layer
 [directory]
 style = "fg:#e3e5e5 bg:#769ff0"
 format = "[ $path ]($style)"
@@ -31,6 +33,7 @@ truncation_symbol = "…/"
 "Music" = " "
 "Pictures" = " "
 
+# second layer
 [git_branch]
 symbol = ""
 style = "bg:#394260"
@@ -42,6 +45,7 @@ style = "bg:#394260"
 format = '[[($all_status$ahead_behind )](fg:#769ff0 bg:#394260)]($style)'
 
 [git_commit]
+style = "bg:#394260"
 commit_hash_length = 8
 tag_symbol = '🔖 '
 tag_disabled = false
@@ -50,6 +54,7 @@ tag_disabled = false
 disabled=false
 format='[([ +$added ]($added_style))([ -$deleted ]($deleted_style))]($style)'
 
+# third layer
 [nodejs]
 symbol = ""
 style = "bg:#212736"
@@ -71,8 +76,14 @@ style = "bg:#212736"
 format = '[[ $symbol ($version) ](fg:#769ff0 bg:#212736)]($style)'
 
 [python]
+style = "bg:#212736"
 format = "[${symbol}${pyenv_prefix}($virtualenv)]($style)"
 
+[conda]
+style = "bg:#212736"
+format = '[[$symbol$environment](fg:#769ff0 bg:#212736)](dimmed green) '
+
+# forth layer
 [time]
 disabled = false
 time_format = "%R"                                      # Hour:Minute Format
