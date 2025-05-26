@@ -13,6 +13,12 @@ return {
       },
     },
   },
+  {
+    "WhoIsSethDaniel/mason-tool-installer.nvim",
+    opts = {
+      ensure_installed = { "rust-analyzer" }, -- automatically install lsp
+    },
+  },
   -- use mason-null-ls to configure Formatters/Linter installation for null-ls sources
   {
     "jay-babu/mason-null-ls.nvim",
